@@ -35,6 +35,7 @@
 
 DROP DATABASE IF EXISTS music_db;
 CREATE DATABASE music_db;
+\c music_db 
 
 -- ============================================================
 -- Step 2: Create the table
@@ -46,7 +47,7 @@ CREATE TABLE songs (
   genre             TEXT NOT NULL,
   release_year      INT NOT NULL,
   duration_seconds  INT NOT NULL,
-  streams           INT DEFAULT 0;
+  streams           INT DEFAULT 0,
   UNIQUE (title, artist)
 );
 
