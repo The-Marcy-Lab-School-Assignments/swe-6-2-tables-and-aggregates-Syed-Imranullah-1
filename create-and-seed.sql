@@ -48,6 +48,7 @@ CREATE TABLE songs (
   release_year      INT NOT NULL,
   duration_seconds  INT NOT NULL,
   streams           INT DEFAULT 0,
+  explicit          BOOLEAN DEFAULT FALSE,
   UNIQUE (title, artist)
 );
 
@@ -55,14 +56,14 @@ CREATE TABLE songs (
 -- ============================================================
 -- Step 3: Insert seed data (at least 8 rows)
 -- ============================================================
-INSERT INTO songs (title, artist, genre, release_year, duration_seconds, streams) VALUES
-  ('Trust', 'Brent Faiyaz', 'R&B', 2018, 180, 50000000),
-  ('Clouded', 'Brent Faiyaz', 'R&B', 2020, 210, 70000000),
-  ('Dead Man Walking', 'Brent Faiyaz', 'R&B', 2021, 240, 65000000),
-  ('Dior', 'Pop Smoke', 'Drill', 2019, 210, 300000000),
-  ('Mood Swings', 'Pop Smoke', 'Drill', 2020, 215, 450000000),
-  ('What You Know Bout Love', 'Pop Smoke', 'Drill', 2020, 200, 350000000),
-  ('Blinding Lights', 'The Weeknd', 'R&B', 2019, 200, 1200000000),
-  ('Goosebumps', 'Travis Scott', 'Hip-Hop', 2016, 244, 850000000),
-  ('Snooze', 'SZA', 'R&B', 2023, 202, 600000000),
-  ('Lucid Dreams', 'Juice WRLD', 'Hip-Hop', 2018, 239, 950000000);
+INSERT INTO songs (title, artist, genre, release_year, duration_seconds, streams, explicit) VALUES
+  ('Trust', 'Brent Faiyaz', 'R&B', 2018, 180, 50000000, FALSE),
+  ('Clouded', 'Brent Faiyaz', 'R&B', 2020, 210, 70000000, FALSE),
+  ('Dead Man Walking', 'Brent Faiyaz', 'R&B', 2021, 240, 65000000, FALSE),
+  ('Dior', 'Pop Smoke', 'Drill', 2019, 210, 300000000, TRUE),
+  ('Mood Swings', 'Pop Smoke', 'Drill', 2020, 215, 450000000, TRUE),
+  ('What You Know Bout Love', 'Pop Smoke', 'Drill', 2020, 200, 350000000, TRUE),
+  ('Blinding Lights', 'The Weeknd', 'R&B', 2019, 200, 1200000000, FALSE),
+  ('Goosebumps', 'Travis Scott', 'Hip-Hop', 2016, 244, 850000000, TRUE),
+  ('Snooze', 'SZA', 'R&B', 2023, 202, 600000000, TRUE),
+  ('Lucid Dreams', 'Juice WRLD', 'Hip-Hop', 2018, 239, 950000000, TRUE);

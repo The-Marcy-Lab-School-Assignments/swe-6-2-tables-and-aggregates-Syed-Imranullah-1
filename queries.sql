@@ -51,32 +51,36 @@ SELECT SUM(stock) AS sports_stock FROM products WHERE category = 'sports';
 
 -- 8. Count the number of products in each category.
 --    Name the count column product_count.
-SELECT COUNT (*) AS product_count FROM products WHERE category;
-
+SELECT category, COUNT(*) AS product_count FROM products GROUP BY category;
 
 -- 9. Find the average price per category, rounded to 2 decimal places.
 --    Name the average column avg_price.
 --    Order the results from most expensive to least expensive.
 
+SELECT category, ROUND(AVG(price), 2) AS avg_price FROM products GROUP BY category ORDER BY avg_price DESC;
 
 -- 10. Find the total stock per category.
 --     Name the total column total_stock.
 --     Order from most to least stock.
 
+SELECT category, SUM(stock) AS total_stock FROM products GROUP BY category ORDER BY total_stock DESC;
 
 -- 11. Find the most expensive product price in each category.
 --     Name the column max_price. Order by category alphabetically.
 
+SELECT category, MAX(price) AS max_price FROM products GROUP BY category ORDER BY category;
 
 -- 12. Find the average rating per brand, rounded to 2 decimal places.
 --     Name the average column avg_rating.
 --     Order from highest to lowest average rating.
 
+SELECT brand, ROUND(AVG(rating), 2) AS avg_rating FROM products GROUP BY brand ORDER BY avg_rating DESC;
 
 -- 13. Count the number of products per brand.
 --     Name the count column product_count.
 --     Order by count from highest to lowest.
 
+SELECT brand, COUNT(*) AS product_count FROM products GROUP BY brand ORDER BY product_count DESC;
 
 -- ============================================================
 -- Part 2C: HAVING
@@ -84,20 +88,23 @@ SELECT COUNT (*) AS product_count FROM products WHERE category;
 
 -- 14. Show only categories that have more than 3 products.
 --     Name the count column product_count.
-
+SELECT category, COUNT(*) AS product_count FROM products GROUP BY category HAVING COUNT(*) > 3;
 
 -- 15. Show only categories where the average price is above $80.
 --     Round the average to 2 decimal places. Name it avg_price.
-
+SELECT category, ROUND(AVG(price), 2) AS avg_price FROM products GROUP BY category HAVING AVG(price) > 80;
 
 -- 16. Show only brands with an average rating above 4.5.
 --     Round the average to 2 decimal places. Name it avg_rating.
-
+SELECT brand, ROUND(AVG(rating), 2) AS avg_rating FROM products GROUP BY brand HAVING AVG(rating) > 4.5;
 
 -- 17. Among products priced under $150, show categories with
 --     an average rating above 4.4.
 --     Round the average to 2 decimal places. Name it avg_rating.
 
+SELECT category, ROUND(AVG(rating), 2) AS avg_rating FROM products WHERE price < 150 GROUP BY category HAVING AVG(rating) > 4.4;
 
 -- 18. Show only brands that carry more than one product.
 --     Name the count column product_count.
+
+SELECT brand, COUNT(*) AS product_count FROM products GROUP BY brand HAVING COUNT(*) > 1;
